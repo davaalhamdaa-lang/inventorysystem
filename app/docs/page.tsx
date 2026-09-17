@@ -63,7 +63,6 @@ export default function DocsPage() {
 
       {/* Main Documentation Body */}
       <main className="relative z-10 max-w-7xl mx-auto px-6 py-12 w-full flex-1">
-        
         {/* Document Title Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-amber-500/20 bg-amber-500/5 text-amber-400 text-[11px] tracking-widest uppercase mb-4 backdrop-blur-sm">
@@ -76,7 +75,7 @@ export default function DocsPage() {
             </span>
           </h1>
           <p className="mt-4 text-sm text-zinc-400 font-light leading-relaxed">
-            Dirancang oleh <strong className="text-zinc-200 font-medium">Dava Alhamda</strong>, sistem inventaris ini menggabungkan *predictive AI analytics*, *ultra-low latency tracking*, dan estetika *executive grade dashboard*.
+            Dirancang oleh <strong className="text-zinc-200 font-medium">Dava Alhamda</strong>, sistem inventaris ini menggabungkan <i>predictive AI analytics</i>, <i>ultra-low latency tracking</i>, dan estetika <i>executive grade dashboard</i>.
           </p>
         </div>
 
@@ -138,7 +137,7 @@ export default function DocsPage() {
                 02 / Core Innovations & Architecture
               </h2>
               <p className="text-xl font-light text-zinc-200 mt-1">
-                Fitur Eksklusif Bernilai Tinggi (*High-End System Concepts*)
+                Fitur Eksklusif Bernilai Tinggi (<i>High-End System Concepts</i>)
               </p>
             </div>
 
@@ -180,16 +179,146 @@ export default function DocsPage() {
           {/* Interactive Tab Panels */}
           <div className="p-8 rounded-3xl bg-zinc-900/20 border border-zinc-800/80 backdrop-blur-xl relative">
             {activeTab === "architecture" && (
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center animate-fade-in">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch transition-all duration-500">
+                <div className="p-6 rounded-2xl bg-zinc-950/60 border border-zinc-800/60 flex flex-col justify-between">
+                  <div>
+                    <div className="text-amber-400 font-mono text-xs tracking-widest uppercase mb-2">
+                      Step 01: Inbound Processing
+                    </div>
+                    <h3 className="text-lg font-medium text-white mb-2">Automated Goods Receipt</h3>
+                    <p className="text-xs text-zinc-400 font-light leading-relaxed">
+                      Proses verifikasi barang masuk secara otomatis menggunakan scanner RFID/Barcode dengan tingkat akurasi tinggi tanpa perlu pencatatan manual.
+                    </p>
+                  </div>
+                  <div className="mt-6 pt-4 border-t border-zinc-900 font-mono text-[10px] text-zinc-500">
+                    STATUS: READY_FOR_INGESTION
+                  </div>
+                </div>
+
+                <div className="p-6 rounded-2xl bg-zinc-950/60 border border-zinc-800/60 flex flex-col justify-between">
+                  <div>
+                    <div className="text-amber-400 font-mono text-xs tracking-widest uppercase mb-2">
+                      Step 02: Spatial Mapping
+                    </div>
+                    <h3 className="text-lg font-medium text-white mb-2">Interactive Warehouse Heatmap</h3>
+                    <p className="text-xs text-zinc-400 font-light leading-relaxed">
+                      Penempatan posisi barang tersinkronisasi dengan tata letak 2D/3D interaktif. Efisiensi pengambilan barang meningkat hingga 40%.
+                    </p>
+                  </div>
+                  <div className="mt-6 pt-4 border-t border-zinc-900 font-mono text-[10px] text-zinc-500">
+                    LATENCY: &lt; 5ms SYNC
+                  </div>
+                </div>
+
+                <div className="p-6 rounded-2xl bg-zinc-950/60 border border-zinc-800/60 flex flex-col justify-between">
+                  <div>
+                    <div className="text-amber-400 font-mono text-xs tracking-widest uppercase mb-2">
+                      Step 03: Outbound & Dispatch
+                    </div>
+                    <h3 className="text-lg font-medium text-white mb-2">Precision Fulfillment</h3>
+                    <p className="text-xs text-zinc-400 font-light leading-relaxed">
+                      Validasi ganda sebelum keluar gudang. Pengeluaran barang langsung memotong jumlah kuantitas dan mencatat penanggung jawab transaksi.
+                    </p>
+                  </div>
+                  <div className="mt-6 pt-4 border-t border-zinc-900 font-mono text-[10px] text-zinc-500">
+                    DISPATCH_LOG: ENCRYPTED
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {activeTab === "ai" && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center transition-all duration-500">
                 <div className="space-y-4">
                   <div className="text-amber-400 font-mono text-xs tracking-widest uppercase">
-                    Step 01: Inbound Processing
+                    Predictive Intelligence Engine
                   </div>
-                  <h3 className="text-xl font-medium text-white">Automated Goods Receipt</h3>
-                  <p className**Dokumentasi Konsep: Smart Inventory & Automated Asset Tracking**
+                  <h3 className="text-2xl font-light text-white">Smart Inventory Forecasting</h3>
+                  <p className="text-xs text-zinc-400 font-light leading-relaxed">
+                    Sistem memantau pola rotasi stok harian, mingguan, dan musiman. Saat stok mendekati titik batas minimum, sistem akan otomatis menerbitkan draf <i>Purchase Order</i> (PO).
+                  </p>
+                  <ul className="space-y-2 text-xs text-zinc-300 font-mono">
+                    <li className="flex items-center gap-2">
+                      <span className="text-amber-400">✓</span> Auto-calculate Safety Stock Level
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="text-amber-400">✓</span> Supplier Lead Time Optimization
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="text-amber-400">✓</span> Anomalous Consumption Alert
+                    </li>
+                  </ul>
+                </div>
 
-Dokumentasi ini merancang arsitektur sistem inventaris modern yang menggabungkan presisi *real-time tracking*, analitik prediktif berbasis AI, dan visualisasi data yang intuitif.
+                <div className="p-6 rounded-2xl bg-zinc-950/80 border border-zinc-800 font-mono text-xs space-y-3">
+                  <div className="text-zinc-500">// AI Stock Model Projection</div>
+                  <div className="flex justify-between text-zinc-400">
+                    <span>Target Item:</span>
+                    <span className="text-amber-400">Server Blade Chassis X1</span>
+                  </div>
+                  <div className="flex justify-between text-zinc-400">
+                    <span>Current Inventory:</span>
+                    <span className="text-white">12 Units</span>
+                  </div>
+                  <div className="flex justify-between text-zinc-400">
+                    <span>Estimated Depletion:</span>
+                    <span className="text-rose-400">4 Days (Sep 21, 2026)</span>
+                  </div>
+                  <div className="mt-4 p-3 rounded bg-amber-500/10 border border-amber-500/30 text-amber-300 text-[11px]">
+                    Recommendation: Trigger auto-reorder of 50 units from verified vendor.
+                  </div>
+                </div>
+              </div>
+            )}
 
----
+            {activeTab === "security" && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center transition-all duration-500">
+                <div className="space-y-4">
+                  <div className="text-amber-400 font-mono text-xs tracking-widest uppercase">
+                    Security & Compliance
+                  </div>
+                  <h3 className="text-2xl font-light text-white">Immutable Ledger & Role Access</h3>
+                  <p className="text-xs text-zinc-400 font-light leading-relaxed">
+                    Menjamin setiap perubahan data stok terverifikasi. Dilengkapi hak akses berbasis peran (RBAC) dan catatan mutasi aset yang transparan.
+                  </p>
+                  <div className="grid grid-cols-2 gap-4 text-xs font-mono">
+                    <div className="p-3 rounded bg-zinc-950 border border-zinc-800">
+                      <div className="text-amber-400 font-semibold mb-1">Role-Based Access</div>
+                      <div className="text-zinc-500">SuperAdmin, Manager, Operator</div>
+                    </div>
+                    <div className="p-3 rounded bg-zinc-950 border border-zinc-800">
+                      <div className="text-amber-400 font-semibold mb-1">Audit Ledger</div>
+                      <div className="text-zinc-500">Non-editable change history</div>
+                    </div>
+                  </div>
+                </div>
 
-**Infografis Alur Konsep & Arsitektur**
+                <div className="p-6 rounded-2xl bg-zinc-950/80 border border-zinc-800 font-mono text-[11px] space-y-2 text-zinc-400">
+                  <div className="text-zinc-500 mb-2">// Live System Audit Trail</div>
+                  <div className="text-emerald-400">[10:42:15] USER_DAVA updated item #A-892 (+150 units)</div>
+                  <div className="text-zinc-400">[10:45:00] SYSTEM verified checksum hash: 8f9b2c...</div>
+                  <div className="text-amber-400">[10:50:12] ALERT: Stock threshold reached for SKU #C-102</div>
+                  <div className="text-zinc-500">[10:52:00] AUTH session renewed for Operator_01</div>
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+      </main>
+
+      {/* Footer */}
+      <footer className="relative z-10 flex flex-col sm:flex-row items-center justify-between px-8 py-8 md:px-16 text-xs text-zinc-500 border-t border-zinc-900/80 gap-4 bg-zinc-950/40 backdrop-blur-md">
+        <div className="flex items-center gap-2">
+          <span>&copy; {new Date().getFullYear()} Next-Gen Inventory System.</span>
+          <span className="text-zinc-700">|</span>
+          <span>Architected by <strong className="text-zinc-300 font-normal">Dava Alhamda</strong></span>
+        </div>
+        <div className="flex gap-6 tracking-widest uppercase text-[10px]">
+          <Link href="/" className="hover:text-amber-400 transition-colors">Home Page</Link>
+          <a href="#" className="hover:text-amber-400 transition-colors">API Docs</a>
+          <a href="#" className="hover:text-amber-400 transition-colors">Direct Contact</a>
+        </div>
+      </footer>
+    </div>
+  );
+}
