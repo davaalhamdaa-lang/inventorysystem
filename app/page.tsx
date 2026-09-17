@@ -7,15 +7,39 @@ export default function Home() {
   const [subscribed, setSubscribed] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
-  // Countdown timer ke tanggal rilis fiktif (misal: 60 hari ke depan)
+  // Countdown timer ke peluncuran Inventory System
   const [timeLeft, setTimeLeft] = useState({
-    days: 45,
-    hours: 12,
-    minutes: 38,
-    seconds: 15,
+    days: 30,
+    hours: 14,
+    minutes: 22,
+    seconds: 45,
   });
 
-  // Track pergerakan mouse untuk efek Ambient Glow interaktif
+  // Otomatis ubah Title Page dan Favicon secara dinamis
+  useEffect(() => {
+    // 1. Ubah Judul Tab Browser
+    document.title = "Dava Alhamda — Next-Gen Inventory System";
+
+    // 2. Buat Favicon Emas Monogram "DA" secara otomatis (SVG Data URI)
+    const faviconSvg = `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+        <rect width="100" height="100" rx="24" fill="#09090b"/>
+        <path d="M 30 25 L 55 25 C 70 25 70 50 55 50 L 30 50 Z M 30 50 L 60 50 C 75 50 75 75 60 75 L 30 75 Z" fill="none" stroke="#f59e0b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="72" cy="75" r="5" fill="#f59e0b"/>
+      </svg>
+    `;
+    const encodedSvg = `data:image/svg+xml,${encodeURIComponent(faviconSvg)}`;
+
+    let link: HTMLLinkElement | null = document.querySelector("link[rel*='icon']");
+    if (!link) {
+      link = document.createElement("link");
+      link.rel = "shortcut icon";
+      document.getElementsByTagName("head")[0].appendChild(link);
+    }
+    link.href = encodedSvg;
+  }, []);
+
+  // Track pergerakan mouse untuk efek Ambient Glow
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePos({ x: e.clientX, y: e.clientY });
@@ -24,7 +48,7 @@ export default function Home() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  // Interval timer untuk hitung mundur detik
+  // Countdown Timer
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft((prev) => {
@@ -47,54 +71,70 @@ export default function Home() {
   };
 
   return (
-    <div className="relative min-h-screen w-full bg-[#030303] text-white flex flex-col justify-between overflow-hidden font-sans selection:bg-amber-500 selection:text-black">
-      {/* Background Grid Pattern & Ambient Radial Spotlight */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f1f1f12_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f12_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
-      
-      {/* Interactive Cursor Spotlight */}
+    <div className="relative min-h-screen w-full bg-[#050505] text-white flex flex-col justify-between overflow-hidden font-sans selection:bg-amber-500 selection:text-black">
+      {/* Background Grid Lines Pattern */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#26262615_1px,transparent_1px),linear-gradient(to_bottom,#26262615_1px,transparent_1px)] bg-[size:5rem_5rem] pointer-events-none" />
+
+      {/* Dynamic Cursor Spotlight Effect */}
       <div
-        className="pointer-events-none absolute -inset-px transition-opacity duration-300 opacity-60"
+        className="pointer-events-none absolute -inset-px transition-opacity duration-300 opacity-70"
         style={{
-          background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(212, 175, 55, 0.08), transparent 40%)`,
+          background: `radial-gradient(650px circle at ${mousePos.x}px ${mousePos.y}px, rgba(217, 119, 6, 0.09), transparent 45%)`,
         }}
       />
 
       {/* Top Header / Branding */}
-      <header className="relative z-10 flex items-center justify-between px-8 py-8 md:px-16">
-        <div className="flex items-center gap-2">
-          <div className="h-2 w-2 rounded-full bg-amber-400 animate-ping" />
-          <span className="text-xs tracking-[0.3em] font-semibold text-zinc-400 uppercase">
-            Privé / Edition 01
-          </span>
+      <header className="relative z-10 flex items-center justify-between px-8 py-8 md:px-16 border-b border-zinc-900/60 backdrop-blur-sm">
+        <div className="flex items-center gap-3">
+          {/* Logo Monogram DA */}
+          <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-amber-400 via-amber-600 to-amber-900 p-[1px] shadow-[0_0_15px_rgba(217,119,6,0.2)]">
+            <div className="h-full w-full bg-zinc-950 rounded-[11px] flex items-center justify-center font-serif font-bold text-amber-400 text-sm tracking-tighter">
+              DA
+            </div>
+          </div>
+          <div className="flex flex-col">
+            <span className="text-sm font-semibold tracking-wider text-zinc-100 uppercase">
+              DAVA ALHAMDA
+            </span>
+            <span className="text-[10px] tracking-[0.25em] text-amber-500/80 font-mono uppercase">
+              Inventory Engine v1.0
+            </span>
+          </div>
         </div>
-        <div className="text-xs tracking-[0.2em] text-zinc-500 uppercase border border-zinc-800 rounded-full px-4 py-1.5 backdrop-blur-md">
-          Status: Invitation Only
+
+        <div className="hidden sm:flex items-center gap-2 px-4 py-1.5 rounded-full border border-zinc-800 bg-zinc-900/50 text-xs text-zinc-400 backdrop-blur-md">
+          <span className="h-2 w-2 rounded-full bg-amber-400 animate-pulse" />
+          <span>Private Beta Access</span>
         </div>
       </header>
 
-      {/* Main Content */}
-      <main className="relative z-10 flex flex-col items-center justify-center text-center px-6 my-auto">
+      {/* Hero Content Section */}
+      <main className="relative z-10 flex flex-col items-center justify-center text-center px-6 my-auto py-12">
         {/* Subtle Badge */}
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-amber-500/20 bg-amber-500/5 text-amber-300/90 text-xs tracking-widest uppercase mb-8 backdrop-blur-sm animate-fade-in">
-          <span>The Next Frontier of Digital Luxury</span>
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-300 text-xs tracking-widest uppercase mb-8 backdrop-blur-md shadow-[0_0_20px_rgba(217,119,6,0.1)]">
+          <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+          Precision Asset Intelligence
         </div>
 
         {/* Main Headline */}
-        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-light tracking-tight max-w-5xl leading-[1.1] text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-200 to-zinc-600">
-          Crafting Something <br />
+        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-light tracking-tight max-w-5xl leading-[1.08] text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-200 to-zinc-600">
+          The Future of <br />
           <span className="font-serif italic font-normal bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600 bg-clip-text text-transparent">
-            Extraordinary
+            Inventory Management
           </span>
         </h1>
 
-        {/* Subtitle */}
-        <p className="mt-6 text-sm sm:text-base md:text-lg text-zinc-400 max-w-xl font-light leading-relaxed">
-          We are quietly preparing an unprecedented digital experience. 
-          Reserved for those who appreciate perfection in every pixel.
+        {/* Subtitle with Author Credit */}
+        <p className="mt-6 text-sm sm:text-base md:text-lg text-zinc-400 max-w-2xl font-light leading-relaxed">
+          An ultra-high performance enterprise inventory ecosystem engineered by{" "}
+          <span className="text-zinc-100 font-medium underline underline-offset-4 decoration-amber-500/50">
+            Dava Alhamda
+          </span>
+          . Seamless tracking, real-time analytics, and absolute precision.
         </p>
 
         {/* Countdown Timer */}
-        <div className="grid grid-cols-4 gap-4 md:gap-8 my-12 max-w-2xl w-full">
+        <div className="grid grid-cols-4 gap-3 sm:gap-6 md:gap-8 my-12 max-w-2xl w-full">
           {[
             { label: "Days", value: timeLeft.days },
             { label: "Hours", value: timeLeft.hours },
@@ -103,52 +143,56 @@ export default function Home() {
           ].map((item, index) => (
             <div
               key={index}
-              className="flex flex-col items-center justify-center p-4 md:p-6 rounded-2xl bg-zinc-900/40 border border-zinc-800/60 backdrop-blur-md shadow-2xl relative group hover:border-amber-500/40 transition-all duration-500"
+              className="flex flex-col items-center justify-center p-4 sm:p-6 rounded-2xl bg-zinc-900/40 border border-zinc-800/80 backdrop-blur-md shadow-2xl relative group hover:border-amber-500/40 transition-all duration-500"
             >
-              <div className="text-2xl sm:text-4xl md:text-5xl font-extralight tracking-tight text-white group-hover:scale-105 transition-transform duration-300">
+              <div className="text-2xl sm:text-4xl md:text-5xl font-extralight tracking-tight text-white group-hover:scale-105 transition-transform duration-300 font-mono">
                 {String(item.value).padStart(2, "0")}
               </div>
-              <div className="text-[10px] sm:text-xs tracking-[0.2em] text-zinc-500 uppercase mt-2">
+              <div className="text-[9px] sm:text-xs tracking-[0.25em] text-zinc-500 uppercase mt-2 font-medium">
                 {item.label}
               </div>
             </div>
           ))}
         </div>
 
-        {/* Subscription Form */}
+        {/* VIP Early Access Form */}
         <div className="w-full max-w-md">
           {!subscribed ? (
             <form onSubmit={handleSubscribe} className="relative flex items-center">
               <input
                 type="email"
                 required
-                placeholder="Enter your VIP email..."
+                placeholder="Enter work email for VIP demo..."
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-5 py-4 rounded-full bg-zinc-900/80 border border-zinc-800 text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-amber-500/60 transition-all duration-300 backdrop-blur-md pr-36"
+                className="w-full px-5 py-4 rounded-full bg-zinc-900/90 border border-zinc-800 text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-amber-500/60 transition-all duration-300 backdrop-blur-md pr-36 shadow-inner"
               />
               <button
                 type="submit"
-                className="absolute right-1.5 px-6 py-2.5 rounded-full bg-gradient-to-r from-amber-400 to-amber-600 text-black text-xs font-semibold tracking-wider uppercase hover:opacity-90 transition-opacity duration-300 shadow-[0_0_20px_rgba(217,119,6,0.3)]"
+                className="absolute right-1.5 px-5 py-2.5 rounded-full bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 text-black text-xs font-semibold tracking-wider uppercase hover:brightness-110 transition-all duration-300 shadow-[0_0_20px_rgba(217,119,6,0.35)]"
               >
-                Request Access
+                Get Access
               </button>
             </form>
           ) : (
-            <div className="p-4 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-sm tracking-wide animate-fade-in">
-              ✓ You are on the priority VIP list. Stay tuned.
+            <div className="p-4 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-sm tracking-wide animate-fade-in shadow-[0_0_20px_rgba(217,119,6,0.15)]">
+              ✓ Access requested. Dava Alhamda's team will contact you shortly.
             </div>
           )}
         </div>
       </main>
 
       {/* Footer */}
-      <footer className="relative z-10 flex flex-col sm:flex-row items-center justify-between px-8 py-8 md:px-16 text-xs text-zinc-600 border-t border-zinc-900/80 gap-4">
-        <div>&copy; {new Date().getFullYear()} Private Atelier. All rights reserved.</div>
+      <footer className="relative z-10 flex flex-col sm:flex-row items-center justify-between px-8 py-8 md:px-16 text-xs text-zinc-500 border-t border-zinc-900/80 gap-4 bg-zinc-950/40 backdrop-blur-md">
+        <div className="flex items-center gap-2">
+          <span>&copy; {new Date().getFullYear()} Inventory System.</span>
+          <span className="text-zinc-700">|</span>
+          <span>Crafted by <strong className="text-zinc-300 font-normal">Dava Alhamda</strong></span>
+        </div>
         <div className="flex gap-6 tracking-widest uppercase text-[10px]">
-          <a href="#" className="hover:text-amber-400 transition-colors">Instagram</a>
-          <a href="#" className="hover:text-amber-400 transition-colors">Twitter / X</a>
-          <a href="#" className="hover:text-amber-400 transition-colors">Contact VIP</a>
+          <a href="#" className="hover:text-amber-400 transition-colors">Documentation</a>
+          <a href="#" className="hover:text-amber-400 transition-colors">System Status</a>
+          <a href="#" className="hover:text-amber-400 transition-colors">Direct Contact</a>
         </div>
       </footer>
     </div>
