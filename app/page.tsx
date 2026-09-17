@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-
+import Link from "next/link";
 export default function Home() {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
@@ -85,28 +85,32 @@ export default function Home() {
 
       {/* Top Header / Branding */}
       <header className="relative z-10 flex items-center justify-between px-8 py-8 md:px-16 border-b border-zinc-900/60 backdrop-blur-sm">
-        <div className="flex items-center gap-3">
-          {/* Logo Monogram DA */}
-          <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-amber-400 via-amber-600 to-amber-900 p-[1px] shadow-[0_0_15px_rgba(217,119,6,0.2)]">
-            <div className="h-full w-full bg-zinc-950 rounded-[11px] flex items-center justify-center font-serif font-bold text-amber-400 text-sm tracking-tighter">
-              DA
-            </div>
-          </div>
-          <div className="flex flex-col">
-            <span className="text-sm font-semibold tracking-wider text-zinc-100 uppercase">
-              DAVA ALHAMDA
-            </span>
-            <span className="text-[10px] tracking-[0.25em] text-amber-500/80 font-mono uppercase">
-              Inventory Engine v1.0
-            </span>
-          </div>
-        </div>
+  {/* Logo & Branding */}
+  <div className="flex items-center gap-3">
+    <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-amber-400 via-amber-600 to-amber-900 p-[1px] shadow-[0_0_15px_rgba(217,119,6,0.2)]">
+      <div className="h-full w-full bg-zinc-950 rounded-[11px] flex items-center justify-center font-serif font-bold text-amber-400 text-sm tracking-tighter">
+        DA
+      </div>
+    </div>
+    <div className="flex flex-col">
+      <span className="text-sm font-semibold tracking-wider text-zinc-100 uppercase">
+        DAVA ALHAMDA
+      </span>
+      <span className="text-[10px] tracking-[0.25em] text-amber-500/80 font-mono uppercase">
+        Inventory Engine v1.0
+      </span>
+    </div>
+  </div>
 
-        <div className="hidden sm:flex items-center gap-2 px-4 py-1.5 rounded-full border border-zinc-800 bg-zinc-900/50 text-xs text-zinc-400 backdrop-blur-md">
-          <span className="h-2 w-2 rounded-full bg-amber-400 animate-pulse" />
-          <span>Private Beta Access</span>
-        </div>
-      </header>
+  {/* Tombol Menuju Documentation Page */}
+  <Link
+    href="/docs"
+    className="flex items-center gap-2 px-5 py-2 rounded-full border border-amber-500/30 bg-amber-500/10 text-xs text-amber-300 font-medium hover:bg-amber-500 hover:text-black transition-all duration-300 shadow-[0_0_15px_rgba(217,119,6,0.15)]"
+  >
+    <span>Explore Docs</span>
+    <span className="text-sm">→</span>
+  </Link>
+</header>
 
       {/* Hero Content Section */}
       <main className="relative z-10 flex flex-col items-center justify-center text-center px-6 my-auto py-12">
@@ -183,18 +187,21 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="relative z-10 flex flex-col sm:flex-row items-center justify-between px-8 py-8 md:px-16 text-xs text-zinc-500 border-t border-zinc-900/80 gap-4 bg-zinc-950/40 backdrop-blur-md">
-        <div className="flex items-center gap-2">
-          <span>&copy; {new Date().getFullYear()} Inventory System.</span>
-          <span className="text-zinc-700">|</span>
-          <span>Crafted by <strong className="text-zinc-300 font-normal">Dava Alhamda</strong></span>
-        </div>
-        <div className="flex gap-6 tracking-widest uppercase text-[10px]">
-          <a href="#" className="hover:text-amber-400 transition-colors">Documentation</a>
-          <a href="#" className="hover:text-amber-400 transition-colors">System Status</a>
-          <a href="#" className="hover:text-amber-400 transition-colors">Direct Contact</a>
-        </div>
-      </footer>
+     <footer className="relative z-10 flex flex-col sm:flex-row items-center justify-between px-8 py-8 md:px-16 text-xs text-zinc-500 border-t border-zinc-900/80 gap-4 bg-zinc-950/40 backdrop-blur-md">
+  <div className="flex items-center gap-2">
+    <span>&copy; {new Date().getFullYear()} Inventory System.</span>
+    <span className="text-zinc-700">|</span>
+    <span>Crafted by <strong className="text-zinc-300 font-normal">Dava Alhamda</strong></span>
+  </div>
+  <div className="flex gap-6 tracking-widest uppercase text-[10px]">
+    {/* Tautan navigasi internal */}
+    <Link href="/docs" className="hover:text-amber-400 transition-colors">
+      Documentation
+    </Link>
+    <a href="#" className="hover:text-amber-400 transition-colors">System Status</a>
+    <a href="#" className="hover:text-amber-400 transition-colors">Direct Contact</a>
+  </div>
+</footer>
     </div>
   );
 }
